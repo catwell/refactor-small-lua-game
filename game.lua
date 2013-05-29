@@ -4,16 +4,7 @@ function start()
   print("When a checkpoint is reached, if you get an invalid move from there it will take you back to that level")
   print("There are 8 rooms in total... Good luck!!!")
   print("(Hint: Do not use capital letters)")
-  print("Room 1")
-  local move = io.read()
-  if move == "south" then
-    return room3()
-  elseif move == "east" then
-    return room2()
-  else
-    print("invalid move")
-    return start()
-  end
+  return room1()
 end
 
 function room1()

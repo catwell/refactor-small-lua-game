@@ -5,103 +5,36 @@ When a checkpoint is reached, if you get an invalid move from there it will take
 There are 8 rooms in total... Good luck!!!
 (Hint: Do not use capital letters)]]
 
+rooms = {}
+
+room = function(name, checkpoint, moves)
+  return function()
+    print(name)
+    local move = io.read()
+    if moves[move] then
+      return rooms[moves[move]]()
+    else
+      print("invalid move")
+      return rooms[checkpoint]()
+    end
+  end
+end
+
 function start()
   print(START_MSG)
-  return room1()
+  return rooms[1]()
 end
 
-function room1()
-  print("Room 1")
-  local move = io.read()
-  if move == "south" then
-    return room3()
-  elseif move == "east" then
-    return room2()
-  else
-    print("invalid move")
-    return start()
-  end
-end
+rooms[0] = start
+rooms[1] = room("Room 1", 0, {south = 3, east = 2})
+rooms[2] = room("Room 2", 1, {north = 4, west = 3})
+rooms[3] = room("Room 3", 1, {north = 2, east = 4})
+rooms[4] = room("Room 4", 1, {east = 3, west = 5})
+rooms[5] = room("Room 5, Checkpoint", 5, {east = 6, south = 7})
+rooms[6] = room("Room 6", 5, {south = 8, east = 7})
+rooms[7] = room("Room 7", 5, {north = 6, west = 8})
 
-function room2()
-  print("Room 2")
-  local move = io.read()
-  if move == "north" then
-    return room4()
-  elseif move == "west" then
-    return room3()
-  else
-    print("invalid move")
-    return room1()
-  end
-end
-
-function room3()
-  print("Room 3")
-  local move = io.read()
-  if move == "north" then
-    return room2()
-  elseif move == "east" then
-    return room4()
-  else
-    print("invalid move")
-    return room1()
-  end
-end
-
-function room4()
-  print("Room 4,")
-  local move = io.read()
-  if move == "east" then
-    return room3()
-  elseif move == "west" then
-    return room5()
-  else
-    print("invalid move")
-    return room1()
-  end
-end
-
-function room5()
-  print("Room 5, Checkpoint")
-  local move = io.read()
-  if move == "east" then
-    return room6()
-  elseif move == "south" then
-    return room7()
-  else
-    print("invalid move")
-    return room5()
-  end
-end
-
-function room6()
-  print("Room 6")
-  local move = io.read()
-  if move == "south" then
-    return room8()
-  elseif move == "east" then
-    return room7()
-  else
-    print("invalid move")
-    return room5()
-  end
-end
-
-function room7()
-  print("Room 7")
-  local move = io.read()
-  if move == "north" then
-    return room6()
-  elseif move == "west" then
-    return room8()
-  else
-    print("invalid move")
-    return room5()
-  end
-end
-
-function room8()
+rooms[8] = function()
   print("Room 8")
   print("Congratulations! You made it to the last room!!")
 end

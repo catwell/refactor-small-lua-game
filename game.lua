@@ -112,4 +112,4 @@ function room8()
   print("Congratulations! You made it to the last room!!")
 end
 
-lua = room1()
+room1()

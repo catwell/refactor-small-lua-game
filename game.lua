@@ -1,9 +1,12 @@
+local START_MSG = [[
+Directions: Type 'north, south, east, or west' in order to get to the finish.
+If 'invalid move' is printed, try a different direction
+When a checkpoint is reached, if you get an invalid move from there it will take you back to that level
+There are 8 rooms in total... Good luck!!!
+(Hint: Do not use capital letters)]]
+
 function start()
-  print("Directions: Type 'north, south, east, or west' in order to get to the finish.")
-  print("If 'invalid move' is printed, try a different direction")
-  print("When a checkpoint is reached, if you get an invalid move from there it will take you back to that level")
-  print("There are 8 rooms in total... Good luck!!!")
-  print("(Hint: Do not use capital letters)")
+  print(START_MSG)
   return room1()
 end
 

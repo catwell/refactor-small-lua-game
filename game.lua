@@ -1,4 +1,4 @@
-function room1()
+function start()
   print("Directions: Type 'north, south, east, or west' in order to get to the finish.")
   print("If 'invalid move' is printed, try a different direction")
   print("When a checkpoint is reached, if you get an invalid move from there it will take you back to that level")
@@ -12,11 +12,11 @@ function room1()
     return room2()
   else
     print("invalid move")
-    return room1()
+    return start()
   end
 end
 
-function roomreal1()
+function room1()
   print("Room 1")
   local move = io.read()
   if move == "south" then
@@ -25,7 +25,7 @@ function roomreal1()
     return room2()
   else
     print("invalid move")
-    return room1()
+    return start()
   end
 end
 
@@ -38,7 +38,7 @@ function room2()
     return room3()
   else
     print("invalid move")
-    return roomreal1()
+    return room1()
   end
 end
 
@@ -51,7 +51,7 @@ function room3()
     return room4()
   else
     print("invalid move")
-    return roomreal1()
+    return room1()
   end
 end
 
@@ -64,7 +64,7 @@ function room4()
     return room5()
   else
     print("invalid move")
-    return roomreal1()
+    return room1()
   end
 end
 
@@ -112,4 +112,4 @@ function room8()
   print("Congratulations! You made it to the last room!!")
 end
 
-room1()
+start()
